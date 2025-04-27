@@ -1,0 +1,48 @@
+PRACTICAL 4 - Identify Semantic Relation between words (using wordnet)
+
+# Step 1: Install NLTK and download necessary data
+# You can install NLTK using the following command in the terminal or command prompt:
+# pip install nltk
+
+import nltk
+nltk.download('wordnet')
+nltk.download('omw-1.4')  # Optional: for multilingual WordNet
+
+# Step 2: Import WordNet from NLTK
+from nltk.corpus import wordnet as wn
+
+# Step 3: Define a function to get semantic relationships in a simplified format
+def get_semantic_relationships(word1, word2):
+    # Get synsets (sets of synonyms) for the words
+    synsets1 = wn.synsets(word1)
+    synsets2 = wn.synsets(word2)
+    
+    # Check if synsets exist for both words
+    if not synsets1 or not synsets2:
+        return f"Could not find semantic relationships for '{word1}' and '{word2}'."
+    
+    # Take the first synset for each word
+    synset1 = synsets1[0]
+    synset2 = synsets2[0]
+
+    # Extract simplified relationships
+    relationships = {
+        "Word 1": word1,
+        "Word 2": word2,
+        "Definition of Word 1": synset1.definition(),
+        "Definition of Word 2": synset2.definition(),
+        "Similarity Score (Wu-Palmer)": synset1.wup_similarity(synset2),  # Similarity Score
+        "Hypernyms of Word 1": ', '.join([lemma.name() for hypernym in synset1.hypernyms() for lemma in hypernym.lemmas()]),
+        "Hypernyms of Word 2": ', '.join([lemma.name() for hypernym in synset2.hypernyms() for lemma in hypernym.lemmas()]),
+    }
+
+    return relationships
+
+# Example Usage
+word1 = "dog"
+word2 = "cat"
+semantic_relationships = get_semantic_relationships(word1, word2)
+
+# Print the simplified semantic relationships
+for key, value in semantic_relationships.items():
+    print(f"{key}: {value}")

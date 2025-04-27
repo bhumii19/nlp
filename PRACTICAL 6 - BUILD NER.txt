@@ -1,0 +1,61 @@
+import spacy
+from sklearn.metrics import precision_score, recall_score, f1_score
+
+# Load pre-trained spaCy NER model (en_core_web_sm)
+nlp = spacy.load('en_core_web_sm')
+
+# Example Text
+text = """Barack Obama was born on August 4, 1961, in Honolulu, Hawaii. 
+He served as the 44th president of the United States, from 2009 to 2017. 
+His favorite restaurant is The French Laundry in Yountville, California."""
+
+# Step 1: Process the Text
+doc = nlp(text)
+
+# Step 2: Extract Entities and Classify them
+entities = [(ent.text, ent.label_) for ent in doc.ents]
+print("Extracted Entities:")
+for entity in entities:
+    print(f"{entity[0]} ({entity[1]})")
+
+# Step 3: Evaluate the Model using Precision, Recall, F1-Score
+# Define ground truth entities (for evaluation purposes)
+true_entities = [
+    ("Barack Obama", "PERSON"),
+    ("August 4, 1961", "DATE"),
+    ("Honolulu", "LOCATION"),
+    ("Hawaii", "LOCATION"),
+    ("44th president of the United States", "ORG"),
+    ("2009 to 2017", "DATE"),
+    ("The French Laundry", "ORG"),
+    ("Yountville", "LOCATION"),
+    ("California", "LOCATION")
+]
+
+# Extract entities and labels from the predicted output
+pred_entities = [entity[0] for entity in entities]
+pred_labels = [entity[1] for entity in entities]
+
+# Extract entities and labels from the true output
+true_entities_text = [entity[0] for entity in true_entities]
+true_labels = [entity[1] for entity in true_entities]
+
+# Step 4: Align True Labels with Predicted Labels by Checking if Entity Texts Match
+aligned_true_labels = []
+aligned_pred_labels = []
+
+for t_entity, p_entity in zip(true_entities, entities):
+    if t_entity[0] == p_entity[0]:
+        aligned_true_labels.append(t_entity[1])
+        aligned_pred_labels.append(p_entity[1])
+
+# Step 5: Compute Precision, Recall, F1-Score
+precision = precision_score(aligned_true_labels, aligned_pred_labels, average='weighted', zero_division=0)
+recall = recall_score(aligned_true_labels, aligned_pred_labels, average='weighted', zero_division=0)
+f1 = f1_score(aligned_true_labels, aligned_pred_labels, average='weighted', zero_division=0)
+
+# Print performance metrics
+print("\nModel Evaluation:")
+print(f"Precision: {precision:.2f}")
+print(f"Recall: {recall:.2f}")
+print(f"F1-Score: {f1:.2f}")

@@ -1,0 +1,58 @@
+EXTRA -  Perform tokenization (Whitespace, Punctuation-based, Treebank, Tweet, MWE) using nltk library. Use porter stemmer and snowball stemmer for stemming.Use any technique for lemmatization. Input / Dataset –use any sample sentence
+# Step 1: Install NLTK and download necessary resources
+# pip install nltk
+
+import nltk
+from nltk.tokenize import WhitespaceTokenizer, WordPunctTokenizer, TweetTokenizer, MWETokenizer, TreebankWordTokenizer
+from nltk.stem import PorterStemmer, SnowballStemmer
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import wordnet
+
+# Download NLTK resources
+nltk.download('wordnet')
+nltk.download('punkt')
+
+# Sample sentence
+sentence = "The quick brown fox, jumping swiftly, wasn't afraid of the lazy dog! #nature #wildlife"
+
+# Step 2: Tokenization Techniques
+whitespace_tokenizer = WhitespaceTokenizer()
+word_punct_tokenizer = WordPunctTokenizer()
+tweet_tokenizer = TweetTokenizer()
+treebank_tokenizer = TreebankWordTokenizer()
+
+# Multi-Word Expression Tokenizer (MWE)
+mwe_tokenizer = MWETokenizer([("quick", "brown"), ("lazy", "dog")])
+
+# Apply tokenizers
+tokens_whitespace = whitespace_tokenizer.tokenize(sentence)
+tokens_punct = word_punct_tokenizer.tokenize(sentence)
+tokens_tweet = tweet_tokenizer.tokenize(sentence)
+tokens_treebank = treebank_tokenizer.tokenize(sentence)
+tokens_mwe = mwe_tokenizer.tokenize(sentence.split())
+
+# Display tokenization results
+print("Whitespace Tokenizer:", tokens_whitespace)
+print("Punctuation-based Tokenizer:", tokens_punct)
+print("Tweet Tokenizer:", tokens_tweet)
+print("Treebank Tokenizer:", tokens_treebank)
+print("MWE Tokenizer:", tokens_mwe)
+
+# Step 3: Stemming (Porter and Snowball)
+porter = PorterStemmer()
+snowball = SnowballStemmer("english")
+
+# Stemming with Porter and Snowball
+porter_stems = [porter.stem(token) for token in tokens_whitespace]
+snowball_stems = [snowball.stem(token) for token in tokens_whitespace]
+
+print("\nPorter Stemmer:", porter_stems)
+print("Snowball Stemmer:", snowball_stems)
+
+# Step 4: Lemmatization using WordNet Lemmatizer
+lemmatizer = WordNetLemmatizer()
+
+# Lemmatization (using verb 'v' as POS)
+lemmatized = [lemmatizer.lemmatize(token.lower(), pos='v') for token in tokens_whitespace]
+
+print("\nLemmatized Tokens:", lemmatized)

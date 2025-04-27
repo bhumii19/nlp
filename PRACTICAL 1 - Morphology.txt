@@ -1,0 +1,43 @@
+PRACTICAL 1 - Morphology is the study of the way words are built up from smaller meaning bearing units.
+
+import nltk          #pip install nltk
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+from nltk.corpus import wordnet
+
+# Download necessary NLTK resources
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+
+# Initialize lemmatizer
+lemmatizer = WordNetLemmatizer()
+
+# Function to get POS tag for lemmatization
+def get_pos_tag(tag): 
+    if tag.startswith('NN'):
+        return wordnet.NOUN
+    elif tag.startswith('VB'):
+        return wordnet.VERB
+    elif tag.startswith('JJ'):
+        return wordnet.ADJ
+    else:
+        return wordnet.NOUN
+
+# Example sentence
+sentence = "The cats were running in the park, and their happiness was growing."
+
+# Tokenize the sentence into words
+words = word_tokenize(sentence)
+
+# Get POS tags for the words
+pos_tags = nltk.pos_tag(words)
+
+# Lemmatization (reduce words to base form with correct POS tag)
+lemmatized_words = [lemmatizer.lemmatize(word, get_pos_tag(tag)) for word, tag in pos_tags]
+
+# Print results
+print("Original sentence:", sentence)
+print("Tokenized words:", words)
+print("POS tags:", pos_tags)
+print("Lemmatized words:", lemmatized_words)

@@ -1,0 +1,28 @@
+# Word list for testing
+words = ['playing', 'played', 'replay', 'kindness', 'unkind']
+
+# Suffixes and prefixes to check
+suffixes = ['ing', 'ed', 'ness']
+prefixes = ['re', 'un']
+
+print("Add Table:")
+for word in words:
+    for suffix in suffixes:
+        if word.endswith(suffix):
+            root = word[:-len(suffix)]
+            print(f"Root: {root} + {suffix} = {word}")
+    for prefix in prefixes:
+        if word.startswith(prefix):
+            root = word[len(prefix):]
+            print(f"Root: {root} + {prefix} = {word}")
+
+print("\nDelete Table:")
+for word in words:
+    for suffix in suffixes:
+        if word.endswith(suffix):
+            root = word[:-len(suffix)]
+            print(f"{word} - {suffix} = {root}")
+    for prefix in prefixes:
+        if word.startswith(prefix):
+            root = word[len(prefix):]
+            print(f"{word} - {prefix} = {root}")

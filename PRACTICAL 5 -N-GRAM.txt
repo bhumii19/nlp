@@ -1,0 +1,81 @@
+PRACTICAL 5 -N-GRAM
+# Install necessary libraries
+# pip install nltk matplotlib sklearn
+
+import nltk
+import matplotlib.pyplot as plt
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.util import ngrams
+from nltk.stem import WordNetLemmatizer
+from nltk.probability import FreqDist
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+
+# Download necessary resources
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+
+# Sample Text
+text = "I love natural language processing. Natural language processing is very interesting."
+
+# Step 1: Data Preprocessing
+# Convert text to lowercase
+text = text.lower()
+
+# Tokenization
+tokens = word_tokenize(text)
+
+# Remove stopwords
+stop_words = set(stopwords.words('english'))
+tokens = [word for word in tokens if word not in stop_words and word.isalpha()]
+
+# Lemmatization
+lemmatizer = WordNetLemmatizer()
+tokens = [lemmatizer.lemmatize(word) for word in tokens]
+
+print(f"Processed Tokens: {tokens}")
+
+# Step 2: Generating N-Grams (Unigrams, Bigrams, Trigrams)
+# Unigrams (N=1)
+unigrams = ngrams(tokens, 1)
+
+# Bigrams (N=2)
+bigrams = ngrams(tokens, 2)
+
+# Trigrams (N=3)
+trigrams = ngrams(tokens, 3)
+
+# Step 3: Frequency Distribution of N-Grams
+unigram_freq = FreqDist(unigrams)
+bigram_freq = FreqDist(bigrams)
+trigram_freq = FreqDist(trigrams)
+
+# Display top 5 frequent unigrams, bigrams, and trigrams
+print("\nTop 5 Unigrams:", unigram_freq.most_common(5))
+print("\nTop 5 Bigrams:", bigram_freq.most_common(5))
+print("\nTop 5 Trigrams:", trigram_freq.most_common(5))
+
+# Step 4: Visualizing N-Grams Frequency
+def plot_freq_dist(freq_dist, title):
+    plt.figure(figsize=(10, 6))
+    freq_dist.plot(30, cumulative=False)
+    plt.title(title)
+    plt.show()
+
+# Plot frequency distributions
+plot_freq_dist(unigram_freq, 'Unigram Frequency Distribution')
+plot_freq_dist(bigram_freq, 'Bigram Frequency Distribution')
+plot_freq_dist(trigram_freq, 'Trigram Frequency Distribution')
+
+# Step 5: Comparison with Bag-of-Words (BoW) and TF-IDF
+# Bag-of-Words Model
+vectorizer = CountVectorizer()
+X_bow = vectorizer.fit_transform([text])
+print("\nBag-of-Words Features:", vectorizer.get_feature_names_out())
+
+# TF-IDF Model
+tfidf_vectorizer = TfidfVectorizer()
+X_tfidf = tfidf_vectorizer.fit_transform([text])
+print("\nTF-IDF Features:", tfidf_vectorizer.get_feature_names_out())
+
