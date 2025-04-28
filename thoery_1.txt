@@ -1,0 +1,177 @@
+Experiment 1
+
+Problem Statement: Morphology is the study of the way words are built up from smaller meaning bearing units.
+
+Aim:
+
+The aim of studying morphology is to understand the structure and formation of words by analyzing how they are composed of smaller units called morphemes, which are the smallest meaning-bearing elements of language. Through this study, one seeks to explore the rules and processes involved in word formation, inflection, derivation, and compounding in a given language.
+
+Objective:
+The objective of studying morphology is to:
+Identify and analyze the different types of morphemes (free and bound).
+Understand the processes of word formation (e.g., affixation, compounding).
+Explore the ways in which morphemes combine to create new words or alter existing ones.
+Examine the relationship between word forms and their meanings.
+Investigate how morphological structures influence syntax, semantics, and language evolution.
+Description:
+Morphology is a subfield of linguistics that focuses on how words are constructed from smaller units of meaning known as morphemes. Morphemes can be:
+Free morphemes: stand-alone words like "cat" or "run."
+Bound morphemes: must attach to other morphemes to convey meaning, such as prefixes like "un-" or suffixes like "-ing." Morphologists study both derivational morphology (how new words are created from existing ones) and inflectional morphology (how words change to express different grammatical features like tense, number, or case). This field is essential for understanding how languages function, evolve, and express complex ideas.
+Conclusion:
+In conclusion, morphology is a vital area of linguistics that helps us understand the building blocks of words and the processes that shape their meaning. By breaking down words into their morphemes, we gain insights into the grammar, meaning, and evolution of language. Morphology is a key component in understanding the structure of any language and is essential for linguistic analysis, language teaching, and linguistic theory development.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment 2
+
+Problem Statement: Study and understand the concepts of Morphology by the use of add, delete table.
+
+Aim:
+
+To understand the concepts of Morphology through the use of Add and Delete operations on tables, and how these operations can modify the structure or contents of a database in relation to morphological analysis in linguistics or database systems.
+Objective:
+To explore the Add operation which allows the addition of new elements or attributes in a table.
+To examine the Delete operation, which facilitates the removal of existing elements or attributes from a table.
+To understand how morphological rules or structures can be represented and modified using these database operations.
+To observe how these operations impact the relationships between different data points (or words) within a system.
+
+Description:
+Morphology refers to the study of the structure and form of words, typically in the field of linguistics. In the context of databases, particularly in terms of operations like "Add" and "Delete", the following processes can be discussed:
+Add Operation: The Add operation in a database table refers to inserting new rows or columns. In a morphological context, this could mean adding a new word form, feature, or attribute in the system to expand or modify the representation of words. For example, if we have a table that stores information about words and their plural forms, adding new rows for plural words or adding a new column for a new feature (e.g., tense) would fall under the "Add" operation.
+Delete Operation: The Delete operation allows the removal of rows or columns from a database table. Morphologically, deleting elements might involve removing obsolete or unnecessary word forms or attributes. For example, if a table stores multiple forms of a word (singular, plural, past tense), you may choose to delete forms that are no longer used or have become irrelevant in the current context of linguistic analysis.
+In a database table setting, let's say we have a table with the following fields: Word, Form, and Tense. Using the Add operation, we can insert a new word with its corresponding form and tense. On the other hand, using the Delete operation, we could remove a specific word form or entry that is no longer relevant or needed.
+
+
+Conclusion:
+The Add and Delete operations in database systems can be effectively applied to study and manipulate morphological structures in linguistics. By adding or removing data points (e.g., word forms or tense attributes), one can simulate the processes of language evolution, word usage, or changes in grammatical forms. The use of these operations facilitates a more dynamic and flexible approach to morphological analysis, allowing for systematic changes and updates to the word database as language evolves or specific patterns emerge.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment 3
+
+Problem Statement: Implement Part-Of-Speech tagging.
+
+Aim:
+
+To implement Part-of-Speech (POS) tagging to classify words in a sentence into their respective parts of speech (such as noun, verb, adjective, etc.) and analyze how these classifications contribute to the understanding of sentence structure and meaning.
+
+Objective:
+To understand the concept of Part-of-Speech tagging and its significance in natural language processing (NLP).
+To apply POS tagging to sentences to identify and label words according to their grammatical categories.
+To explore various methods and tools used in POS tagging, such as rule-based, statistical, or machine learning approaches.
+To evaluate the accuracy and efficiency of POS tagging in real-world applications like text processing, information retrieval, and syntactic parsing.
+
+Description:
+Part-of-Speech (POS) tagging refers to the process of assigning a specific part of speech (e.g., noun, verb, adjective) to each word in a given sentence. This is a crucial step in natural language processing (NLP) because it helps machines understand the grammatical structure of sentences, which is foundational for many advanced NLP tasks such as syntactic parsing, machine translation, and text generation.
+POS Tagging Process:
+Tokenization: Break down the input text into individual tokens (words, punctuation marks).
+Tagging: For each token, assign a part-of-speech tag based on its context in the sentence. Tags are usually represented by abbreviations like "NN" (Noun, Singular), "VB" (Verb, Base form), and "JJ" (Adjective).
+Tools and Techniques:
+Rule-based POS Tagging: Uses predefined rules to determine the part of speech based on the word’s form and its surrounding context.
+Statistical POS Tagging: Involves training a model on a large corpus of text to learn the patterns of word usage and their part-of-speech assignments. A popular method is the Hidden Markov Model (HMM).
+Machine Learning-based POS Tagging: More advanced techniques use algorithms like Conditional Random Fields (CRFs) or Deep Learning (neural networks) to predict the most likely tag based on context.
+Example:
+For the sentence:
+"The quick brown fox jumps over the lazy dog."
+POS tagging assigns the following labels:
+"The" → DT (Determiner)
+"quick" → JJ (Adjective)
+"brown" → JJ (Adjective)
+"fox" → NN (Noun, Singular)
+"jumps" → VBZ (Verb, 3rd person singular present)
+"over" → IN (Preposition)
+"the" → DT (Determiner)
+"lazy" → JJ (Adjective)
+"dog" → NN (Noun, Singular)
+Tools for POS Tagging:
+NLTK (Natural Language Toolkit): A popular Python library that provides a POS tagging module.
+SpaCy: A modern NLP library that offers robust and fast POS tagging.
+Stanford POS Tagger: A Java-based tool developed by Stanford NLP Group for accurate tagging.
+
+
+Conclusion:
+POS tagging is a fundamental technique in Natural Language Processing that helps computers understand the grammatical structure of a sentence. By classifying words into their respective parts of speech, it provides valuable information for downstream NLP tasks such as syntactic analysis, sentiment analysis, machine translation, and more. The implementation of POS tagging can be carried out using various approaches, ranging from rule-based methods to advanced machine learning models. Effective POS tagging is key to enabling machines to better understand and process human language, making it an essential tool in many NLP applications.
+
+
+
+
+
+
+
+
+Experiment 4
+
+
+Problem Statement:  Identify semantic relationship between word from given text (use word net dictionary).
+
+Aim:
+
+To identify and analyze the semantic relationships between words in a given text using WordNet. Semantic relationships refer to the way words are related in meaning, such as synonyms, antonyms, hyponyms, hypernyms, and meronyms.
+
+Objective:
+To understand the different types of semantic relationships such as synonyms, antonyms, hyponyms, hypernyms, and meronyms.
+To explore the use of the WordNet lexical database to identify semantic relationships.
+To apply WordNet’s functionality to analyze relationships between words in a given sentence or passage.
+To visualize and interpret these relationships to improve text analysis, information retrieval, and natural language processing.
+
+Description:
+Semantic relationships are connections that describe how words or concepts are related in terms of meaning. These relationships include:
+Synonymy: Words that have similar meanings (e.g., "happy" and "joyful").
+Antonymy: Words that have opposite meanings (e.g., "hot" and "cold").
+Hyponymy: A relationship where a word is a more specific term under a broader category (e.g., "dog" is a hyponym of "animal").
+Hypernymy: A relationship where a word is a broader term that encompasses more specific terms (e.g., "animal" is a hypernym of "dog").
+Meronymy: A part-to-whole relationship (e.g., "wheel" is a meronym of "car").
+Holonymy: A whole-to-part relationship (e.g., "car" is a holonym of "wheel").
+WordNet is a lexical database that groups English words into sets of synonyms called synsets. It provides definitions and semantic relationships between words. It is widely used for tasks like word sense disambiguation, semantic search, and more.
+Example:
+Let’s take the following sentence and identify some of the semantic relationships:
+Sentence: "The dog chased the cat across the park."
+Identify WordNet Synsets:
+"dog" → [dog.n.01] (a domesticated carnivorous mammal)
+"cat" → [cat.n.01] (a small domesticated carnivorous mammal)
+"park" → [park.n.01] (a large public green area in a town)
+Identify Semantic Relationships:
+Synonymy: "dog" and "cat" both belong to the category of animals, but they are not synonyms in this case because they refer to different species.
+Hyponymy/Hypernymy:
+"dog" is a hyponym of "animal" because a dog is a type of animal.
+Similarly, "cat" is a hyponym of "animal".
+Holonymy: "park" is a holonym for "path" or "bench," as these can be parts of a park.
+Meronymy: "dog" has various parts (e.g., tail, ears, etc.), which are meronyms.
+
+Conclusion:
+Using WordNet for identifying semantic relationships between words enables more precise understanding of language. The relationships such as synonyms, antonyms, hyponyms, and hypernyms enrich NLP applications by helping in better word sense disambiguation, information retrieval, and even machine translation. By utilizing tools like NLTK and WordNet’s vast lexical data, we can automate the detection of these relationships to enhance text analysis processes across various domains.
