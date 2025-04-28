@@ -1,28 +1,69 @@
-# Word list for testing
-words = ['playing', 'played', 'replay', 'kindness', 'unkind']
+# Import necessary libraries
+import pandas as pd
+import nltk
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
 
-# Suffixes and prefixes to check
-suffixes = ['ing', 'ed', 'ness']
-prefixes = ['re', 'un']
+# Download necessary NLTK resources
+nltk.download('punkt')
+nltk.download('wordnet')
 
-print("Add Table:")
-for word in words:
-    for suffix in suffixes:
-        if word.endswith(suffix):
-            root = word[:-len(suffix)]
-            print(f"Root: {root} + {suffix} = {word}")
-    for prefix in prefixes:
-        if word.startswith(prefix):
-            root = word[len(prefix):]
-            print(f"Root: {root} + {prefix} = {word}")
+# Initialize lemmatizer
+lemmatizer = WordNetLemmatizer()
 
-print("\nDelete Table:")
-for word in words:
-    for suffix in suffixes:
-        if word.endswith(suffix):
-            root = word[:-len(suffix)]
-            print(f"{word} - {suffix} = {root}")
-    for prefix in prefixes:
-        if word.startswith(prefix):
-            root = word[len(prefix):]
-            print(f"{word} - {prefix} = {root}")
+# Function to guess morphological process
+def guess_morphological_process(morpheme):
+    if morpheme in ['s', 'ed', 'ing']:
+        return "Inflection"
+    else:
+        return "Derivation"
+
+# Function to automatically compute word forms and morphemes
+def compute_morphemes_and_processes(base_word):
+    tokens = word_tokenize(base_word)
+    base_lemma = lemmatizer.lemmatize(tokens[0])  # Lemmatize the base word
+    
+    # Define morphemes to add for the experiment
+    add_morphemes = ['s', 'ed', 'ing', 'ness']  # Sample morphemes
+    
+    results = []
+    
+    # Process each morpheme and compute new words
+    for add_morpheme in add_morphemes:
+        # Add morpheme
+        new_word_add = base_lemma + add_morpheme
+        # Delete morpheme (simulating deletion from new word)
+        if new_word_add.endswith(add_morpheme):
+            new_word_delete = new_word_add[:-len(add_morpheme)]
+        else:
+            new_word_delete = new_word_add  # No change if morpheme is not found
+        
+        # Guess the morphological process
+        morph_process = guess_morphological_process(add_morpheme)
+        
+        # Append result to list
+        results.append({
+            "Base Word": base_lemma,
+            "Add Morpheme": add_morpheme,
+            "New Word (after Add)": new_word_add,
+            "Deleted Morpheme": add_morpheme,
+            "New Word (after Delete)": new_word_delete,
+            "Morphological Process": morph_process
+        })
+    
+    return results
+
+# Base words to demonstrate the experiment
+base_words = ['cat', 'play', 'run', 'happy']
+
+# Prepare the table with results
+table_data = []
+for base_word in base_words:
+    table_data.extend(compute_morphemes_and_processes(base_word))
+
+# Create DataFrame from the results
+table = pd.DataFrame(table_data)
+
+# Display the final table
+print("\nFinal Table:\n")
+print(table)
