@@ -41,3 +41,79 @@ print("Original sentence:", sentence)
 print("Tokenized words:", words)
 print("POS tags:", pos_tags)
 print("Lemmatized words:", lemmatized_words)
+
+
+OR 
+
+# Import NLTK libraries
+import nltk
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+from nltk.corpus import wordnet
+
+# Download necessary resources
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+
+# Known prefixes and suffixes
+prefixes = ["un", "re", "pre", "dis", "mis"]
+suffixes = ["s", "ed", "ing", "ness", "er", "ly", "ful"]
+
+# Example words
+words = ["cats", "played", "unhappiness", "running", "redo", "happier", "prepaid", "misunderstood"]
+
+# Function to classify morphemes
+def classify_morpheme(morpheme):
+    if morpheme in prefixes or morpheme in suffixes:
+        return "Bound Morpheme"
+    else:
+        return "Free Morpheme"
+
+# Function to classify morphology
+def classify_morphology(morpheme):
+    # Simple rule: 
+    # Derivational morphemes usually change meaning or word class (prefixes or big suffixes like -ness, -ful)
+    if morpheme in ["un", "re", "pre", "dis", "mis", "ness", "ful", "ly"]:
+        return "Derivational Morphology"
+    # Inflectional morphemes usually change tense, number, degree
+    elif morpheme in ["s", "ed", "ing", "er"]:
+        return "Inflectional Morphology"
+    else:
+        return "Root Word (Base)"
+
+# Function to split word and classify
+def split_and_classify(word):
+    morphemes = []
+    # Check prefix
+    for prefix in prefixes:
+        if word.startswith(prefix):
+            morphemes.append(prefix)
+            word = word[len(prefix):]
+            break
+    # Check suffix
+    for suffix in suffixes:
+        if word.endswith(suffix):
+            word_base = word[:-len(suffix)]
+            if word_base:
+                morphemes.append(word_base)
+            morphemes.append(suffix)
+            break
+    # If no morphemes detected
+    if not morphemes:
+        morphemes.append(word)
+    return morphemes
+
+# Final Output
+print("\nMorpheme Splitting and Classification:\n")
+for word in words:
+    print(f"Word: {word}")
+    morphemes = split_and_classify(word)
+    for morpheme in morphemes:
+        morpheme_type = classify_morpheme(morpheme)
+        morphology_type = classify_morphology(morpheme)
+        print(f"  Morpheme: {morpheme}")
+        print(f"    Morpheme Type: {morpheme_type}")
+        print(f"    Morphology Type: {morphology_type}")
+    print()
+
